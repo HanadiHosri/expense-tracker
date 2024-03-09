@@ -22,14 +22,14 @@
     border-bottom: 1px solid rgb(233, 230, 230);
 }
 
-.container {
+.add-container {
     display: flex;
     justify-content: space-evenly;
 
 
 }
 
-.child {
+.add-child {
     display: flex;
     height: 20%;
  
