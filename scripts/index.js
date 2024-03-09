@@ -37,18 +37,18 @@ function viewTransactions() {
         const currencyCell = row.insertCell(1);
         const typeCell = row.insertCell(2);
         const editRemoveCell = row.insertCell(3);
+        const editButton = document.createElement("button");
+        const editIcon = document.createElement("i");
+        const removeButton = document.createElement("button");
+        const trashIcon = document.createElement("i");
 
         amountCell.textContent = transaction.amount;
         currencyCell.textContent = transaction.currency;
         typeCell.textContent = transaction.type;
 
-        const editButton = document.createElement("button");
-        const editIcon = document.createElement("i");
         editIcon.className = "fas fa-edit";
         editButton.appendChild(editIcon);
 
-        const removeButton = document.createElement("button");
-        const trashIcon = document.createElement("i");
         trashIcon.className = "fas fa-trash-alt";
         removeButton.appendChild(trashIcon);
         removeButton.addEventListener("click", () => removeTransaction(index));
@@ -65,3 +65,4 @@ function removeTransaction(index) {
     localStorage.setItem("transactions", JSON.stringify(transactions));
     viewTransactions();
 };
+

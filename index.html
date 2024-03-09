@@ -51,11 +51,17 @@
         </div>
         <div>
             <label for="currency">Currency</label>
-            <input type="text" placeholder="USD" />
+            <select name="currency" id="currency-filter"></select>
         </div>
         <div>
             <label for="type">Type</label>
-            <input type="text" placeholder="Expense" />
+            <select name="type" id="type-filter">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+            </select>
+        </div>
+        <div>
+            <button>Apply</button>
         </div>
     </section>
 
