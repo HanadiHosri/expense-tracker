@@ -1,8 +1,9 @@
 const selectCurrency = document.getElementById("currency");
+const selectCurrencyFilter = document.getElementById("currency-filter");
 const tableBody = document.querySelector(".view-section table");
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-fetch("https://ivory-ostrich-yoke.cyclic.app/students/available")
+fetch("https://ivory-ostrich-yoke.cyclic.app/students/available", {method: "GET"})
     .then(response => response.json())
     .then(data => {
         data.forEach(item => {
@@ -10,6 +11,11 @@ fetch("https://ivory-ostrich-yoke.cyclic.app/students/available")
             option.value = item.code;
             option.text = item.code;
             selectCurrency.add(option);
+
+            const filterOption = document.createElement("option");
+            filterOption.value = item.code;
+            filterOption.text = item.code;
+            selectCurrencyFilter.add(filterOption);
         });
     })
     .catch(error => console.error(error));
@@ -66,3 +72,10 @@ function removeTransaction(index) {
     viewTransactions();
 };
 
+function filterTransactions() {
+    let amountFrom = document.getElementById("amount-from").value;
+    let amountTo = document.getElementById("amount-to").value;
+    let currency = document.getElementById("currency-filter").value;
+    let type = document.getElementById("type-filter").value;
+
+};
