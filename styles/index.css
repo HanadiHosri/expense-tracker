@@ -20,13 +20,8 @@
     margin-left: 50px;
     margin-right: 50px;
     border-bottom: 1px solid rgb(233, 230, 230);
-}
-
-.add-container {
     display: flex;
     justify-content: space-evenly;
-
-
 }
 
 .add-child {
@@ -46,3 +41,12 @@ label, input {
 button {
     width: 80px;
 }
+
+.filter-section {
+    height: 100px;
+    margin: 30px;
+    border-bottom: 1px solid rgb(233, 230, 230);
+    display: flex;
+    justify-content: space-evenly;
+}
+
