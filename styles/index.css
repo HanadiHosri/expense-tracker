@@ -50,3 +50,8 @@ button {
     justify-content: space-evenly;
 }
 
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 100px;
+}
