@@ -75,7 +75,50 @@ function removeTransaction(index) {
 function filterTransactions() {
     let amountFrom = document.getElementById("amount-from").value;
     let amountTo = document.getElementById("amount-to").value;
-    let currency = document.getElementById("currency-filter").value;
-    let type = document.getElementById("type-filter").value;
+    let userCurrency = document.getElementById("currency-filter").value;
+    let userType = document.getElementById("type-filter").value;
 
+    const filteredTransactions = transactions.filter(
+        (item) => {
+            const amount = item.amount
+            const currency = item.currency
+            const type = item.type
+            return amount >= amountFrom && amount <= amountTo && currency == userCurrency && type == userType;
+        }
+    )
+
+    displayFilteredTransactions(filteredTransactions);
+};
+
+function displayFilteredTransactions(filteredTransactions) {
+
+    while (tableBody.rows.length > 1) {
+        tableBody.deleteRow(1);
+    };
+
+    filteredTransactions.forEach((transaction, index) => {
+        const row = tableBody.insertRow();
+        const amountCell = row.insertCell(0);
+        const currencyCell = row.insertCell(1);
+        const typeCell = row.insertCell(2);
+        const editRemoveCell = row.insertCell(3);
+        const editButton = document.createElement("button");
+        const editIcon = document.createElement("i");
+        const removeButton = document.createElement("button");
+        const trashIcon = document.createElement("i");
+
+        amountCell.textContent = transaction.amount;
+        currencyCell.textContent = transaction.currency;
+        typeCell.textContent = transaction.type;
+
+        editIcon.className = "fas fa-edit";
+        editButton.appendChild(editIcon);
+
+        trashIcon.className = "fas fa-trash-alt";
+        removeButton.appendChild(trashIcon);
+        removeButton.addEventListener("click", () => removeTransaction(index));
+
+        editRemoveCell.appendChild(editButton);
+        editRemoveCell.appendChild(removeButton);
+    });
 };
