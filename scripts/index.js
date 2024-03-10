@@ -140,12 +140,10 @@ function convertAmount(from, amount) {
             })
         })
         .then(response => {
-            console.log("Server Response:", response);
             return response.json()
         })
         .then(data => {
-            console.log("Conversion successful. Converted amount:", data.convertedAmount)
-            resolve(data.convertedAmount);
+            resolve(data);
         })
         .catch(error => { 
             console.error(error);
@@ -158,14 +156,12 @@ async function findTotalBalance() {
     let totalBalance = 0;
     let totalBalanceElement = document.getElementById("total-balance");
     for (const transaction of transactions) {
-        console.log(transaction.amount);
         const amount = Number(transaction.amount) || 0;
         const type = transaction.type;
         const currency = transaction.currency;
 
         try {
             const convertedAmount = await convertAmount(currency, amount);
-            console.log(convertedAmount);
             if (type === "income") {
                 totalBalance += convertedAmount;
             } else {
@@ -175,7 +171,6 @@ async function findTotalBalance() {
             console.error(error);
         }
     };
-    console.log(totalBalance);
     totalBalanceElement.innerHTML = `${totalBalance} USD`;
 
 }
