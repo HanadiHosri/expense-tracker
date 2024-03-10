@@ -31,6 +31,7 @@ function addTransaction() {
     localStorage.setItem("transactions", JSON.stringify(transactions));
     viewTransactions();
     findTotalBalance();
+    document.getElementById("amount").value = "";
 };
 
 function viewTransactions() {
@@ -90,6 +91,8 @@ function filterTransactions() {
     )
 
     displayFilteredTransactions(filteredTransactions);
+    document.getElementById("amount-from").value = "";
+    document.getElementById("amount-to").value = "";
 };
 
 function displayFilteredTransactions(filteredTransactions) {
