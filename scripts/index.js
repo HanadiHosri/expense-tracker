@@ -29,8 +29,8 @@ function addTransaction() {
     let newTransaction = {amount, currency, type};
     transactions.push(newTransaction);
     localStorage.setItem("transactions", JSON.stringify(transactions));
-    
-    viewTransactions()
+    viewTransactions();
+    findTotalBalance();
 };
 
 function viewTransactions() {
@@ -71,6 +71,7 @@ function removeTransaction(index) {
     transactions.splice(index, 1);
     localStorage.setItem("transactions", JSON.stringify(transactions));
     viewTransactions();
+    findTotalBalance();
 };
 
 function filterTransactions() {
@@ -156,7 +157,7 @@ async function findTotalBalance() {
     let totalBalance = 0;
     let totalBalanceElement = document.getElementById("total-balance");
     for (const transaction of transactions) {
-        const amount = Number(transaction.amount) || 0;
+        const amount = Number(transaction.amount);
         const type = transaction.type;
         const currency = transaction.currency;
 
@@ -171,7 +172,8 @@ async function findTotalBalance() {
             console.error(error);
         }
     };
+    localStorage.setItem("totalBalance", totalBalance);
     totalBalanceElement.innerHTML = `${totalBalance} USD`;
 
-}
+};
 findTotalBalance();
