@@ -125,18 +125,58 @@ function displayFilteredTransactions(filteredTransactions) {
 };
 
 function convertAmount(from, amount) {
-    fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
-        method: "POST",
-        body:  {
-            
-            "from": from,
-            "to": "USD",
-            "amount": amount
+    return new Promise((resolve, reject) => {
+        fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({
+                
+                "from": from,
+                "to": "USD",
+                "amount": amount
+    
+            })
+        })
+        .then(response => {
+            console.log("Server Response:", response);
+            return response.json()
+        })
+        .then(data => {
+            console.log("Conversion successful. Converted amount:", data.convertedAmount)
+            resolve(data.convertedAmount);
+        })
+        .catch(error => { 
+            console.error(error);
+            reject(error);
+        });
+    });
+};
 
+async function findTotalBalance() {
+    let totalBalance = 0;
+    let totalBalanceElement = document.getElementById("total-balance");
+    for (const transaction of transactions) {
+        console.log(transaction.amount);
+        const amount = Number(transaction.amount) || 0;
+        const type = transaction.type;
+        const currency = transaction.currency;
+
+        try {
+            const convertedAmount = await convertAmount(currency, amount);
+            console.log(convertedAmount);
+            if (type === "income") {
+                totalBalance += convertedAmount;
+            } else {
+                totalBalance -= convertedAmount;
+            }
+        } catch (error) {
+            console.error(error);
         }
-    })
-    .then(response => response.json())
-    .then(data => {})
-    .catch(error => { console.error(error)});
-}
+    };
+    console.log(totalBalance);
+    totalBalanceElement.innerHTML = `${totalBalance} USD`;
 
+}
+findTotalBalance();
