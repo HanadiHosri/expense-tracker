@@ -3,7 +3,7 @@ const selectCurrencyFilter = document.getElementById("currency-filter");
 const tableBody = document.querySelector(".view-section table");
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-fetch("https://ivory-ostrich-yoke.cyclic.app/students/available", {method: "GET"})
+fetch("https://crowded-cyan-wildebeest.cyclic.app/students/available", {method: "GET"})
     .then(response => response.json())
     .then(data => {
         data.forEach(item => {
@@ -130,7 +130,7 @@ function displayFilteredTransactions(filteredTransactions) {
 
 function convertAmount(from, amount) {
     return new Promise((resolve, reject) => {
-        fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
+        fetch("https://crowded-cyan-wildebeest.cyclic.app/students/convert", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json" 
