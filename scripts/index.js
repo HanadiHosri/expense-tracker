@@ -20,6 +20,7 @@ fetch("https://ivory-ostrich-yoke.cyclic.app/students/available", {method: "GET"
     })
     .catch(error => console.error(error));
 
+
 function addTransaction() {
     let amount = document.getElementById("amount").value;
     let currency = document.getElementById("currency").value;
@@ -122,3 +123,20 @@ function displayFilteredTransactions(filteredTransactions) {
         editRemoveCell.appendChild(removeButton);
     });
 };
+
+function convertAmount(from, amount) {
+    fetch("https://ivory-ostrich-yoke.cyclic.app/students/convert", {
+        method: "POST",
+        body:  {
+            
+            "from": from,
+            "to": "USD",
+            "amount": amount
+
+        }
+    })
+    .then(response => response.json())
+    .then(data => {})
+    .catch(error => { console.error(error)});
+}
+
