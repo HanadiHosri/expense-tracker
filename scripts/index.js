@@ -188,11 +188,9 @@ findTotalBalance();
 
 function editTransaction(index) {
     const transactionToEdit = transactions[index];
-
     const amountCell = tableBody.rows[index + 1].cells[0];
     const currencyCell = tableBody.rows[index + 1].cells[1];
     const typeCell = tableBody.rows[index + 1].cells[2];
-
     const amountData = transactionToEdit.amount;
     const currencyData = transactionToEdit.currency;
     const typeData = transactionToEdit.type;
@@ -200,6 +198,20 @@ function editTransaction(index) {
     amountCell.innerHTML = `<input type='text' id='amount_text${index}' value='${amountData}'>`;
     currencyCell.innerHTML = `<input type='text' id='currency_text${index}' value='${currencyData}'>`;
     typeCell.innerHTML = `<input type='text' id='type_text${index}' value='${typeData}'>`;
+
+    const typeDropdown = document.createElement("select");
+    typeDropdown.id = `type_dropdown${index}`;
+    const expenseOption = document.createElement("option");
+    expenseOption.value = "expense";
+    expenseOption.text = "Expense";
+    const incomeOption = document.createElement("option");
+    incomeOption.value = "income";
+    incomeOption.text = "Income";
+    typeDropdown.appendChild(expenseOption);
+    typeDropdown.appendChild(incomeOption);
+    typeDropdown.value = typeData;
+    typeCell.innerHTML = "";
+    typeCell.appendChild(typeDropdown);
 
     const updateButton = document.createElement("button");
     updateButton.textContent = "Update";
