@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .total-balance-section {
     height: 100px;
     text-align: center;
@@ -35,8 +48,6 @@
 .add-child {
     display: flex;
     flex-direction: column;
-    
- 
 }
 
 .add-child label {
@@ -88,8 +99,36 @@ button {
     justify-content: space-evenly;
 }
 
+.view-section {
+    background-color: rgb(216, 243, 220);
+    flex: 1;
+}
+
 table {
     margin-left: auto;
     margin-right: auto;
     border-spacing: 100px;
+}
+
+@media (max-width: 1019px) {
+
+    .add-section, .filter-section {
+        height: fit-content;
+    }
+
+    .add-section-container, .filter-section-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+    .add-section-container > div, .filter-section-container > div {
+    flex: 1;
+}
+    table {
+        border-spacing: 10px;
+    }
+
 }
