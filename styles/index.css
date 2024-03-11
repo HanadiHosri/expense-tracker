@@ -18,12 +18,19 @@
 
 .add-section {
     height: 150px;
-    margin-left: 50px;
-    margin-right: 50px;
     border-bottom: 1px solid rgb(233, 230, 230);
     display: flex;
     justify-content: space-evenly;
+    background-color: rgb(193, 253, 193);
 }
+
+.add-section-container {
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 .add-child {
     display: flex;
