@@ -7,12 +7,13 @@
 .total-balance-section {
     height: 100px;
     text-align: center;
-    margin: 30px;
     border-bottom: 1px solid rgb(233, 230, 230);
+    background-color: rgb(220, 250, 220);
 }
 
 .total-balance-section h1 {
     font-size: 36px;
+    padding-top: 15px;
 }
 
 .add-section {
