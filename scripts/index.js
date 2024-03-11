@@ -58,6 +58,7 @@ function viewTransactions() {
 
         editIcon.className = "fas fa-edit";
         editButton.appendChild(editIcon);
+        editButton.addEventListener("click", () => editTransaction(index));
 
         trashIcon.className = "fas fa-trash-alt";
         removeButton.appendChild(trashIcon);
@@ -184,3 +185,28 @@ async function findTotalBalance() {
 
 };
 findTotalBalance();
+
+function editTransaction(index) {
+    const transactionToEdit = transactions[index];
+
+    const amountCell = tableBody.rows[index + 1].cells[0];
+    const currencyCell = tableBody.rows[index + 1].cells[1];
+    const typeCell = tableBody.rows[index + 1].cells[2];
+
+    const amountData = transactionToEdit.amount;
+    const currencyData = transactionToEdit.currency;
+    const typeData = transactionToEdit.type;
+
+    amountCell.innerHTML = `<input type='text' id='amount_text${index}' value='${amountData}'>`;
+    currencyCell.innerHTML = `<input type='text' id='currency_text${index}' value='${currencyData}'>`;
+    typeCell.innerHTML = `<input type='text' id='type_text${index}' value='${typeData}'>`;
+
+    const updateButton = document.createElement("button");
+    updateButton.textContent = "Update";
+    updateButton.addEventListener("click", () => updateTransaction(index));
+
+    const editRemoveCell = tableBody.rows[index + 1].cells[3];
+    editRemoveCell.innerHTML = "";
+    editRemoveCell.appendChild(updateButton);
+}
+
