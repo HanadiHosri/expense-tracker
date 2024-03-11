@@ -32,6 +32,8 @@ function addTransaction() {
     viewTransactions();
     findTotalBalance();
     document.getElementById("amount").value = "";
+    document.getElementById("currency").value = "";
+    document.getElementById("type").value = "";
 };
 
 function viewTransactions() {
@@ -93,6 +95,8 @@ function filterTransactions() {
     displayFilteredTransactions(filteredTransactions);
     document.getElementById("amount-from").value = "";
     document.getElementById("amount-to").value = "";
+    document.getElementById("currency-filter").value = "";
+    document.getElementById("type-filter").value = "";
 };
 
 function displayFilteredTransactions(filteredTransactions) {
