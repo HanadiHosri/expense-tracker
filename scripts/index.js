@@ -210,3 +210,17 @@ function editTransaction(index) {
     editRemoveCell.appendChild(updateButton);
 }
 
+function updateTransaction(index) {
+    const updatedTransaction = {
+        amount: document.getElementById(`amount_text${index}`).value,
+        currency: document.getElementById(`currency_text${index}`).value,
+        type: document.getElementById(`type_text${index}`).value,
+    };
+
+    transactions.splice(index, 1);
+    transactions.splice(index, 0, updatedTransaction);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    viewTransactions();
+    findTotalBalance();
+}
