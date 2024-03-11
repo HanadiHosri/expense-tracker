@@ -34,17 +34,25 @@
 
 .add-child {
     display: flex;
+    flex-direction: column;
     height: 20%;
  
+}
+
+.add-child label {
+    margin-left: 5px;
 }
 
 input {
     margin-left: 10px;
 }
 
-label, input {
-    display: block;
+label {
+    display: flex;
+    flex-direction: column;
 }
+
+
 
 button {
     width: 80px;
