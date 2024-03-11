@@ -68,6 +68,11 @@ button {
     width: 80px;
 }
 
+.button {
+    height: 30px;
+    margin-top: 15px;
+}
+
 .filter-section {
     height: 100px;
     border-bottom: 1px solid rgb(233, 230, 230);
